@@ -1,7 +1,7 @@
 0. 初始化git仓库	git init	将目录变成可管理的仓库
 1. 将文件添加到仓库	git add 文件名	也就是将文件放到暂存区
 2. 将文件提交到仓库	git commit -m "本次提交的说明"	将文件提交到当前分支
-3. 查看当前仓库的状态 git status 可以查看文件是否被改动
+3. 查看缓存区信息 git status 可以查看文件是否被改动
 4. 查看被修改文件的内容 git diff 文件名
 5. 查看提交记录		git log 	简单查看 git log --pretty=oneline
 6. 退回上一个版本 	git reset --hard HEAD^	
