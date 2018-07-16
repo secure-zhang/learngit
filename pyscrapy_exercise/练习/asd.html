@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微软小冰·读心术</title>
+    <style>
+        *{margin: 0;
+            padding: 0;}
+        .center{width: 300px;height: 500px;border: 1px solid red;margin: 20px auto;}
+        .one{background-color: white;border-bottom: 1px solid red; height: 50px;}
+        .two{height: 400px;overflow:auto ;word-break : break-all;}
+        .three{border-top: 1px solid red;height: 50px;}
+        .start{				height: 50px;
+				width: 300px;
+				border: 1px blue solid;
+				background:lawngreen;}
+    </style>
+</head>
+<body onload="initRun()">
+<div class="main">
+    <div class="center">
+        <div class="one">
+            <!--公众号-->
+            <span>微软小冰·读心术</span>
+        </div>
+        <div class="two">
+            <!--聊天框-->
+            <div id="show">
+            </div>
+        </div>
+        <div class="three">
+            <!--开始-->
+            <button onclick="kaish(this)" id="startbt" class="start">开始</button>
+            <div  style="display: none" id="bts">
+                <button onclick="yes()" id="yes">是</button>
+                    <button onclick="sorry()" id="sorry">不知道</button>
+                        <button onclick="no()" id="no">不是</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+    <script type="text/javascript">
+        var wentis;
+        var show;
+        var count=0
+        function initRun() {
+            show=document.getElementById("show")
+            show.innerHTML="<p>我是微软小冰，18岁的人工智能少女。而你此刻打开的，是我最强大隐秘的暗黑系技能【邪恶】单纯的人类啊，想挑战我的【读心术】吗？</p><p>规则很简单。你在心里想好一个人的名字，然后按下【开始】。我将会问15个问题。之后，我就会轻松的猜到那个人是谁。吼吼，我已经准备好了，开始吧?</p>"
+            a= '<br><p>好吧，下面我开始提问了。听好，第一个问题是 --她是女的吗？</p>'
+            b='<p>她是不是虚拟的？</p>'
+            c='<p>她是日本动画里的？</p>'
+            d='<p>她是高中生吗？</p>'
+            e='<p>第五个问题，他有一个兄弟姐妹吗？</p>'
+            f='<p>她有一头黑发吧？</p>'
+            g='<p>她手持武器，对吗？</p>'
+            h='<p>怎么，我竟然有点想认输。不过。。第八题！她戴眼罩吗？</p>'
+            j='<p>她山东的吧？</p>'
+            o='<p>第十个问题了【汗】，它是宇航员吗，对吗？<p>'
+            p='<p>你这个狡猾的人类，哼哼，我现在打算公布答案了。它就是--</p>  <p>乱点的吧！怎么样？</p>'
+            u='<p>以你的智商 我很难跟你解释</p><p>哈哈，成功。其实说起来也没那么难。毕竟是单纯的人类啊</p>'
+
+
+            wentis=[a,b,c,d,e,f,g,h,j,o]
+            count=0
+        }
+        function kaish(obj) {
+            count=0
+            obj.style.display="none"
+            show.innerHTML=show.innerHTML+wentis[count]
+            count++
+            document.getElementById("bts").style.display="block"
+        }
+        function yes() {
+            show.innerHTML=show.innerHTML+"<p style='text-align: right'>是</p>"
+            if(wan())
+                return
+            show.innerHTML=show.innerHTML+"<p>"+wentis[count]+"</p>"
+            count++
+        }
+        function sorry() {
+            show.innerHTML=show.innerHTML+"<p style='text-align: right'>不知道</p>"
+            if(wan())
+                return
+            show.innerHTML=show.innerHTML+"<p>"+wentis[count]+"</p>"
+            count++
+
+        }
+        function no() {
+            show.innerHTML=show.innerHTML+"<p style='text-align: right'>不是</p>"
+            if(wan())
+                return
+            show.innerHTML=show.innerHTML+"<p>"+wentis[count]+"</p>"
+            count++
+
+        }
+        function wan() {
+            if(wentis.length==count){
+                document.getElementById("bts").style.display="none"
+                document.getElementById("startbt").style.display="block"
+                document.getElementById("startbt").innerHTML="再来一次"
+                show.innerHTML=show.innerHTML+p+'<br>'+u
+                return true
+            }
+            return false
+        }
+    </script>
+</html>

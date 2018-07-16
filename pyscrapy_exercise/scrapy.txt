@@ -1,0 +1,199 @@
+关于安装报错:
+    error: Microsoft Visual C++ 9.0 is required. Get it from http://aka.ms/vcpyt
+hon27
+
+http://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+下载相应版本
+pip install pypiwin32
+
+
+jsoup : 是java的爬虫框架 .
+	
+scrapy :就是一个应用框架 其目的就是为了抽取 website(网站)的内容 .
+	    是python的爬虫框架 .
+
+学习流程:
+	全览:
+		了解蜘蛛:
+			名称
+			爬得地址
+			解析回调方法
+			scrapy的优势 :
+			    爬虫里面内置了数据的选择和抽取的方法 : css 选择器和 xpath 选择器
+			    提供了shell交互式,可以写或者调试 你的蜘蛛
+			    内置了各种函数的导出方案(json,csv,xml),还支持了多种后台存储方式(FTP, S3, local filesystem),
+			    还支持了自动解码和强大的扩展能力api(中间价, 扩展 管道)
+			    内置的中间价及扩展为下列功能提供了支持:
+			        cookies and session处理
+			        http压缩,http认证,http缓冲
+			        user-agent模拟,robots.txt,伪装代理,定义爬取深度
+
+
+	安装
+	演示
+创建项目
+ scrapy startproject 项目名字
+产生一个蜘蛛(通过下列方式可以自动创建一个模版)
+ scrapy genspider 名字 example.com(网站)
+ scrapy genspider kgcExer kgc.cn
+
+ 启动方法:
+scrapy runspider kgcExer.py -o kgcExer.json
+# scrapy crawl 蜘蛛名字
+
+首先配置item ,形同与django里面的model
+配置pipelines , 这个就是管道
+配置setting 开启管道
+
+使用管道和mysql连写,需要导入pymysql/pymysqldb
+
+
+------------------------------
+爬取图片:
+
+必应
+
+找到对应的Ajax图片的地址
+范冰冰ajax的地址
+https://cn.bing.com/images/async?q=%E8%8C%83%E5%86%B0%E5%86%B0&first=2&count=10&relo=4&relp=2&lostate=c&mmasync=1&dgState=c*6_y*1668s1538s1494s1697s1576s1592_i*40_w*202&IG=31DB8C32719340A1BBC6490BE601A861&SFX=2&iid=images.5747
+
+提供的规则:
+https://www4.bing.com/robots.txt
+
+
+
+------------------------------
+爬取51job  (反扒机制)
+
+反扒的主要思想就是 拒绝统一标识的用户频繁请求资源.
+
+
+如何区分标识用户:
+	1. 使用cookies
+	2. 使用user-agent(用户上网代理,浏览器)
+	3. ip
+------------------------------
+如何绕过反扒(反反扒)
+1. 我们禁用cookies提交
+	setting文件中36行,改为F
+	# Disable cookies (enabled by default)
+	#COOKIES_ENABLED = False
+2. 伪造user-agent
+	请求头里面有
+	Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0
+3. 使用代理机制(ip)
+http://www.66ip.cn/pt.html
+4. 设置爬虫任务的间隔时间
+
+--------------------------------
+fenciqi
+pip install jieba
+window+linux装
+	
+
+scrapy 的命令
+创建项目:
+scrapy startproject 项目名
+创建蜘蛛:
+scrapy genspider 蜘蛛名 域名
+运行自启动蜘蛛:
+scrapy runspider 文件名
+启动蜘蛛:
+scrapy crawl 蜘蛛名字
+检测scrapy是否安装完成:
+scrapy bench
+查看帮助:
+scrapy help
+查看组件信息:
+scrapy version -v
+查看姓项目中的蜘蛛:
+scrapy list
+查看页面源码在浏览器中显示的样子
+scrapy view 网址
+在工程中使用固定的parse函数解析某个页面:
+scrapy parse 网址
+
+使用shell:
+
+1. 首先scrapy shell 网址
+2. response.xpath('路径')  此时会返回标签
+3. response.xpath('路径').extract() 此时会返回标签里面的内容
+4. response.xpath('路径').re('正则表达式')
+
+
+
+
+
+基本介绍:
+	概念: spider是一个类,它定义了怎样爬取一个网站,包括怎样跟踪连接,怎样提取数据
+	执行流程:
+1. 发送请求:
+	通过htto库向目标站点发起请求,即发送一个request,请求可以包含额外的headers等信息,等待服务器响应
+2. 获取响应内容:
+	如果服务器能正常响应,会得到一个response,response的内容就是所要获取的页面内容,类型可能有html,json字符串,二进制数据(如图片视频)等类型
+3. 解析内容:
+	得到的内容可能是html,可以用正则表达式 网页解析库进行解析,可能是json ,可以直接转换为json对象解析,可能是二进制数据,可以保存或者进行进一步处理
+4. 保存数据:
+	保存形式多样,可以存储为文本,可以存储到数据库,或者保存为特定的文件格式
+***************************************************
+
+
+属性:
+	name : spider的名称,要求唯一
+	allowed_domains: 允许的域名
+	start_urls: 初始urls
+	custom_settings: 个性化设置,会否该全局的设置
+	crawler: 抓取器,spider将绑定到它上面
+	settings: 配置实例,包括工程中所有的配置变量
+	logger: 日志实例
+方法:
+from_crawler(crawler,*args,**kwargs): 类方法用于创建spiders
+start_requests(): 生成初始的requests
+make_requests_from_url(url): 根据url生成一个request
+parse(response): 用来解析网页内容
+self.logger.info ('visited success): 用来记录日志
+closed(reason): 当spider关闭的时候调用的方法
+
+
+解析方式:
+直接处理
+json解析
+正则表达式
+BeautifuiSoup
+pyQuery
+Xpath
+
+怎样解决javascript渲染的问题
+1. 分析ajax请求
+2. selenium/WebDriver
+3. splash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+1. 抓取豆瓣
+    1.  获取登录之前的页面源码
+    2.  获取验证码图片
+    3.  下载图片,手动输入
+    4.  获取登录页面之后的源码
+    5.  抓取数据
+
+    帐号   name = form_email
+    密码   name = form_password
+    验证码 id_src = captcha_image name = captcha-solution
+    token  id = captcha-id

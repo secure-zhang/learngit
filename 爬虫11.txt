@@ -1,0 +1,91 @@
+scrapy 的命令
+创建项目:
+scrapy startproject 项目名
+创建蜘蛛:
+scrapy genspider 蜘蛛名 域名
+运行自启动蜘蛛:
+scrapy runspider 文件名
+启动蜘蛛:
+scrapy crawl 蜘蛛名字
+检测scrapy是否安装完成:
+scrapy bench
+查看帮助:
+scrapy help
+查看组件信息:
+scrapy version -v
+查看姓项目中的蜘蛛:
+scrapy list
+查看页面源码在浏览器中显示的样子
+scrapy view 网址
+在工程中使用固定的parse函数解析某个页面:
+scrapy parse 网址
+
+
+使用shell:
+
+1. 首先scrapy shell 网址
+2. response.xpath('路径')  此时会返回标签
+3. response.xpath('路径').extract() 此时会返回标签里面的内容
+4. response.xpath('路径').re('正则表达式')
+
+            # 俩种回调方式
+            yield response.follow(url,self.parse)
+            # yield scrapy.Request(url=url,callback=self.parse)
+
+
+
+
+基本介绍: 
+	概念: spider是一个类,它定义了怎样爬取一个网站,包括怎样跟踪连接,怎样提取数据
+	执行流程:
+1. 发送请求:
+	通过htto库向目标站点发起请求,即发送一个request,请求可以包含额外的headers等信息,等待服务器响应
+2. 获取响应内容:
+	如果服务器能正常响应,会得到一个response,response的内容就是所要获取的页面内容,类型可能有html,json字符串,二进制数据(如图片视频)等类型
+3. 解析内容:
+	得到的内容可能是html,可以用正则表达式 网页解析库进行解析,可能是json ,可以直接转换为json对象解析,可能是二进制数据,可以保存或者进行进一步处理
+4. 保存数据:
+	保存形式多样,可以存储为文本,可以存储到数据库,或者保存为特定的文件格式
+***************************************************
+
+
+属性:
+	name : spider的名称,要求唯一
+	allowed_domains: 允许的域名
+	start_urls: 初始urls
+	custom_settings: 个性化设置,会否该全局的设置
+	crawler: 抓取器,spider将绑定到它上面
+	settings: 配置实例,包括工程中所有的配置变量
+	logger: 日志实例
+方法:
+from_crawler(crawler,*args,**kwargs): 类方法用于创建spiders
+start_requests(): 生成初始的requests
+make_requests_from_url(url): 根据url生成一个request
+parse(response): 用来解析网页内容
+self.logger.info ('visited success): 用来记录日志
+closed(reason): 当spider关闭的时候调用的方法
+
+
+解析方式:
+直接处理
+json解析
+正则表达式
+BeautifuiSoup
+pyQuery
+Xpath
+
+怎样解决javascript渲染的问题
+1. 分析ajax请求
+2. selenium/WebDriver
+3. splash
+
+
+
+
+
+
+
+
+
+
+

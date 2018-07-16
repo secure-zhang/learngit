@@ -1,0 +1,11 @@
+解析库--Pyquery
+from pyquery import PyQuery
+# doc = PyQuery(url='http://www.baidu.com')	# url初始化
+# doc = PyQuery(filename='文件')	# 文件初始化
+doc = PyQuery(html2)
+print(doc('title'))	# 获取标签
+print(doc('.center'))	# 获取class,id属性
+print(doc('div ul .center'))	# 循环嵌套
+.children() # 子节点
+.siblings() # 兄弟节点
+doc('title').find('li') #查找子孙元素

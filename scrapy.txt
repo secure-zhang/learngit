@@ -1,0 +1,112 @@
+关于安装报错:
+    error: Microsoft Visual C++ 9.0 is required. Get it from http://aka.ms/vcpyt
+hon27
+
+http://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted
+下载相应版本
+pip install pypiwin32
+
+
+jsoup : 是java的爬虫框架 .
+	
+scrapy :就是一个应用框架 其目的就是为了抽取 website(网站)的内容 .
+	    是python的爬虫框架 .
+
+学习流程:
+	全览:
+		了解蜘蛛:
+			名称
+			爬得地址
+			解析回调方法
+			scrapy的优势 :
+			    爬虫里面内置了数据的选择和抽取的方法 : css 选择器和 xpath 选择器
+			    提供了shell交互式,可以写或者调试 你的蜘蛛
+			    内置了各种函数的导出方案(json,csv,xml),还支持了多种后台存储方式(FTP, S3, local filesystem),
+			    还支持了自动解码和强大的扩展能力api(中间件, 扩展 管道)
+			    内置的中间价及扩展为下列功能提供了支持:
+			        cookies and session处理
+			        http压缩,http认证,http缓冲
+			        user-agent模拟,robots.txt,伪装代理,定义爬取深度
+
+
+	安装
+	演示
+创建项目
+ scrapy startproject 项目名字
+产生一个蜘蛛(通过下列方式可以自动创建一个模版)
+ scrapy genspider 名字 example.com(网站)
+ scrapy genspider kgcExer kgc.cn
+
+ 启动方法:
+scrapy runspider kgcExer.py -o kgcExer.json
+# scrapy crawl 蜘蛛名字
+
+首先配置item ,形同与django里面的model
+配置pipelines , 这个就是管道
+配置setting 开启管道
+
+使用管道和mysql连写,需要导入pymysql/pymysqldb
+
+
+------------------------------
+爬取图片:
+
+必应
+
+找到对应的Ajax图片的地址
+范冰冰ajax的地址
+https://cn.bing.com/images/async?q=%E8%8C%83%E5%86%B0%E5%86%B0&first=2&count=10&relo=4&relp=2&lostate=c&mmasync=1&dgState=c*6_y*1668s1538s1494s1697s1576s1592_i*40_w*202&IG=31DB8C32719340A1BBC6490BE601A861&SFX=2&iid=images.5747
+
+提供的规则:
+https://www4.bing.com/robots.txt
+
+
+
+------------------------------
+爬取51job  (反扒机制)
+
+反扒的主要思想就是 拒绝统一标识的用户频繁请求资源.
+
+
+如何区分标识用户:
+	1. 使用cookies
+	2. 使用user-agent(用户上网代理,浏览器)
+	3. ip
+------------------------------
+如何绕过反扒(反反扒)
+1. 我们禁用cookies提交
+	setting文件中36行,改为F
+	# Disable cookies (enabled by default)
+	#COOKIES_ENABLED = False
+2. 伪造user-agent
+	请求头里面有
+	Mozilla/5.0 (Windows NT 6.1; rv:59.0) Gecko/20100101 Firefox/59.0
+3. 使用代理机制(ip)
+http://www.66ip.cn/pt.html
+4. 设置爬虫任务的间隔时间
+
+--------------------------------
+fenciqi
+pip install jieba
+window+linux装
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
